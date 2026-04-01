@@ -22,7 +22,7 @@
 
 - name: Clone Sandbox repo 'HEAD'
   ansible.builtin.git:
-    repo: https://github.com/saltyorg/sandbox.git
+    repo: https://github.com/KakatkarAkshay/Sandbox.git
     dest: "{{ server_appdata_path }}/sandbox"
     clone: true
     version: HEAD
@@ -35,7 +35,7 @@
 
 - name: Clone Sandbox repo 'master'
   ansible.builtin.git:
-    repo: https://github.com/saltyorg/sandbox.git
+    repo: https://github.com/KakatkarAkshay/Sandbox.git
     dest: "{{ server_appdata_path }}/sandbox"
     clone: true
     version: master
