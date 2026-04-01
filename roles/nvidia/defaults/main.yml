@@ -24,7 +24,7 @@ nvidia_driver_version: "latest"
 # Driver
 ################################
 
-nvidia_driver_download_url: "https://download.nvidia.com/XFree86/Linux-x86_64/{{ nvidia_driver_version }}/NVIDIA-Linux-x86_64-{{ nvidia_driver_version }}.run"
+nvidia_driver_download_url: "https://download.nvidia.com/XFree86/Linux-{{ 'aarch64' if ansible_facts['architecture'] in ['aarch64', 'arm64'] else 'x86_64' }}/{{ nvidia_driver_version }}/NVIDIA-Linux-{{ 'aarch64' if ansible_facts['architecture'] in ['aarch64', 'arm64'] else 'x86_64' }}-{{ nvidia_driver_version }}.run"
 
 nvidia_driver_download_dest: "/tmp/NVIDIA-driver.run"
 

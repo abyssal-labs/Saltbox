@@ -52,7 +52,7 @@ timescaledb_role_docker_container: "{{ timescaledb_name }}"
 
 # Image
 timescaledb_role_docker_image_pull: true
-timescaledb_role_docker_image_tag: "pg18-all-amd64"
+timescaledb_role_docker_image_tag: "pg18-all"
 timescaledb_role_docker_image_repo: "timescale/timescaledb-ha"
 timescaledb_role_docker_image: "{{ lookup('role_var', '_docker_image_repo', role='timescaledb') }}:{{ lookup('role_var', '_docker_image_tag', role='timescaledb') }}"
 

@@ -64,6 +64,22 @@ jobs:
       - name: Print pip dependencies
         run: cat ./requirements/requirements-saltbox.txt
 
+      - name: Detect sb-go architecture
+        id: sb_go_arch
+        run: |
+          case "$(uname -m)" in
+            x86_64|amd64)
+              echo "arch=amd64" >> "$GITHUB_OUTPUT"
+              ;;
+            aarch64|arm64)
+              echo "arch=arm64" >> "$GITHUB_OUTPUT"
+              ;;
+            *)
+              echo "Unsupported architecture: $(uname -m)" >&2
+              exit 1
+              ;;
+          esac
+
       - name: Install sb binary
         uses: jaxxstorm/action-install-gh-release@v2.1.0
         with:
@@ -71,7 +87,7 @@ jobs:
           tag: latest
           extension-matching: disable
           platform: linux
-          arch: amd64
+          arch: ${{ steps.sb_go_arch.outputs.arch }}
           rename-to: sb
           chmod: "0755"
 

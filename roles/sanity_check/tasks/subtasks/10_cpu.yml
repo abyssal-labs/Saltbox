@@ -11,13 +11,22 @@
   ansible.builtin.shell:
     cmd: "grep flags /proc/cpuinfo | uniq | sed 's/flags.*: //'"
   register: cpu_flags
+  when: ansible_facts['architecture'] in ['x86_64', 'amd64']
 
 - name: CPU Check | Determine supported x86-64 versions based on CPU flags
   ansible.builtin.set_fact:
     supported_versions: "{{ supported_versions | default([]) + [item.key] }}"
   loop: "{{ lookup('dict', x86_64_versions) }}"
-  when: "item.value | difference(cpu_flags.stdout.split()) | length == 0"
+  when:
+    - ansible_facts['architecture'] in ['x86_64', 'amd64']
+    - item.value | difference(cpu_flags.stdout.split()) | length == 0
 
 - name: CPU Check | Print the supported x86-64 versions
   ansible.builtin.debug:
     msg: "Supported x86-64 versions: {{ supported_versions | join(', ') }}"
+  when: ansible_facts['architecture'] in ['x86_64', 'amd64']
+
+- name: CPU Check | Skip x86-64 feature checks on non-x86 hardware
+  ansible.builtin.debug:
+    msg: "Skipping x86-64 feature checks on {{ ansible_facts['architecture'] }}."
+  when: ansible_facts['architecture'] not in ['x86_64', 'amd64']
