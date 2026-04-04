@@ -75,3 +75,5 @@
         git fetch origin
         git reset --hard origin/{{ _git_repo_branch_primary }}
       when: (_git_clone_master_status is failed)
+      become: true
+      become_user: "{{ user.name }}"

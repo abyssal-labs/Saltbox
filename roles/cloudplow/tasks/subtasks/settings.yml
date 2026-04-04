@@ -105,6 +105,14 @@
       become: true
       become_user: "{{ user.name }}"
 
+- name: Settings | Fix Cloudplow ownership before config upgrade
+  ansible.builtin.file:
+    path: "{{ cloudplow_path }}"
+    state: directory
+    owner: "{{ user.name }}"
+    group: "{{ user.name }}"
+    recurse: true
+
 - name: Settings | Upgrade 'config.json'
   ansible.builtin.shell: "{{ cloudplow_python_path }} {{ cloudplow_script_path }} update_config"
   become: true
