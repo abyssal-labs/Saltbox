@@ -20,12 +20,12 @@ user_paths_home_saltbox_location: "/srv/git/saltbox"
 srv_folder: "/srv"
 
 # Saltbox
-saltbox_git_repo_url: "https://github.com/KakatkarAkshay/Saltbox.git"
+saltbox_git_repo_url: "https://github.com/abyssal-labs/Saltbox.git"
 saltbox_git_repo_dest: "/srv/git/saltbox"
 saltbox_git_repo_branch_primary: "master"
 saltbox_git_repo_branch_secondary: "master"
 
 # CB Scripts
-sb_git_repo_url: "https://github.com/KakatkarAkshay/sb.git"
+sb_git_repo_url: "https://github.com/abyssal-labs/sb.git"
 sb_git_repo_dest: "/srv/git/sb"
 sb_git_repo_branch_primary: "master"
